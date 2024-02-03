@@ -11,3 +11,5 @@ This can be the pull machanism like gitops and also push like we can use webhook
 
 Advantage - GitOps continously reconciling our changes -  means you can not changes from directly kubernetes cluster you have to change it inside Git repo then it will make in the cluster.
 Gitops controller monitor all our kubernetes resources and keep a cache of it and same for git side, it monitor the state and keep a cache of this also. then its compare the two states if there is any difference it overide it.
+
+There are many gitops tool -  argocd, fluxcd, jenkinx etc....
