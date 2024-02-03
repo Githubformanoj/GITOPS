@@ -13,3 +13,38 @@ Advantage - GitOps continously reconciling our changes -  means you can not chan
 Gitops controller monitor all our kubernetes resources and keep a cache of it and same for git side, it monitor the state and keep a cache of this also. then its compare the two states if there is any difference it overide it.
 
 There are many gitops tool -  argocd, fluxcd, jenkinx etc....
+
+
+Argocd continously monitors the state between git and kubernetes. 
+Architecture - 
+there are microservices inside gitops - 
+1) Repo server - connect to git and get the state.
+2) Application controller - connect to kubernetes and get the state.
+3) API Server - for communication to argocd from UI/CLI
+4) Redis - somehow when the application controller down, so for redis will cache all the information during the downtime.
+5) Dex server - it is used for SSO.
+
+Three ways to install it - 
+1) Yaml menifest
+2) Helm
+3) Operators
+
+Installation and setup -----------------------
+Go to the argocd docs and download from there. --------
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+then ,
+kubectl get pods -n argocd -w
+Kubectl get svc -n argocd
+then, edit the service for argocd-server for exposing it outside the node 
+kubectl edit service argocd-server -n argocd
+to check, --- minikube service list -n argocd
+then, minikube service argocd-server -n argocd --- it will procide us a url for accessing our argocd.
+now paste the url in the browser, you will be see the login page.
+then, for finding the username and paasword just type this command - kubectl get secerates -n argocd
+kubectl edit argocd-inittial-admin -n argocd
+then, copy the password and run, echo "secrate"== | base64 --decode --- you will get the pwd.
+
+
+
+
