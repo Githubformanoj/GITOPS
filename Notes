@@ -1,1 +1,13 @@
 Complete GitOps -----
+Gitops uses git as a single source of truth to deliver application and infrastructure.
+
+when we make a change in our git repository so we send a pull request then there is a request verification machanism. theny our changes are get deployed in git repository.
+thereafter, we use CI platform like Jenkins for building our application. means there is a proper machanism for CI part.Means if we have a proper git integrated approch for CI so why not for CD. then GitOps cpmes in picture.
+Same there is a machanism for CD Part which we calls GitOps.
+
+Example - We are updating our node configuration in kubernetes cluster like we are modifying our menifest.yaml file. so will put our declerative yaml menifest into the git repository. Now there is a user who send a pull request and then it is reviewed by other devops engineer in our team. and once he approved then the yaml change merged into the repository. then there is a gitops tool, that pics this change and deployed it in your kubernetes cluster.
+What problem gitops solves - it solves the problem where we don't have a track of our deployment.
+This can be the pull machanism like gitops and also push like we can use webhook for pushing it to gitops.
+
+Advantage - GitOps continously reconciling our changes -  means you can not changes from directly kubernetes cluster you have to change it inside Git repo then it will make in the cluster.
+Gitops controller monitor all our kubernetes resources and keep a cache of it and same for git side, it monitor the state and keep a cache of this also. then its compare the two states if there is any difference it overide it.
